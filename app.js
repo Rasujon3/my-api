@@ -17,6 +17,13 @@ app.use(mongoSanitize())
 app.use(xss())
 app.use(hpp())
 
+// Request rate limiting
+const limiter = rateLimit({
+    windowMs: 15*60*1000,
+    max: 100
+})
+app.use(limiter)
+
 
 
 app.use("/api/v1",router);
