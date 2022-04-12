@@ -40,3 +40,15 @@ exports.UpdateStudent = (req,res) => {
         }
     })
 }
+// D = Delete
+exports.DeleteStudent=(req,res)=> {
+    let id = req.params.id;
+    let QUERY = {_id: id}
+    StudentsModel.remove(QUERY, (err,data)=> {
+        if (err){
+            res.status(400).json({error:"Invalid request, something went wrong", data:err})
+        } else {
+            res.status(200).json({success:true,data:data})
+        }
+    })
+}
